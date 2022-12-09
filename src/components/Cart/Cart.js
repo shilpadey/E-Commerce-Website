@@ -14,8 +14,8 @@ const Cart = (props) => {
     const [list, setList] = useState([]);
     let totalAmount = 0;
 
-    const removeCartHandler = (id) => {
-        crtCtx.removeItem(id);
+    const removeCartHandler = (item) => {
+        crtCtx.removeItem(item);
     }
     const userEmailId = localStorage.getItem('email');
     useEffect(() => {
@@ -38,7 +38,7 @@ const Cart = (props) => {
                     imageUrl={item.imageUrl}
                     price={item.price}
                     quantity={item.quantity}
-                    onRemove = {removeCartHandler.bind(null,item.id)}
+                    onRemove = {removeCartHandler.bind(null,item)}
                 />
             ))}
         </ul>

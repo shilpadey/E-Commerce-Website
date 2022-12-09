@@ -105,7 +105,7 @@ const CartProvider = (props) => {
     };
 
 
-    const removeItemHandler = (id) => {
+   /* const removeItemHandler = (id) => {
         let hasItem = false;
         const newItemArray = [...products];
         newItemArray.forEach((element,index) => {
@@ -119,6 +119,20 @@ const CartProvider = (props) => {
             }
         });
         hasItem === false ? updateProducts([...products]) : updateProducts(newItemArray);
+    };*/
+    
+    const removeItemHandler = (item) => {
+        const newItemArray = [...products];
+        const deleteIndex = products.findIndex(each => each.id === item.id);
+        const temp = deleteIndex._id
+        axios.delete(`https://crudcrud.com/api/db6f856867034225a11ee42e2ab84391/cart${userEmailId}/${temp}`)
+          .then((res) => {
+            newItemArray.quantity = newItemArray[temp].quantity - 1;
+            updateProducts([newItemArray]);
+          })
+          .catch(err => {
+            console.log(err);
+          });
     };
 
     
